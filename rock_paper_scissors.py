@@ -7,33 +7,37 @@ options = ["rock", "paper", "scissors"]
 
 while True:
     user_input = input("Type Rock/Paper/Scissors or Q to quit: ").lower()
+
+    # Finishing the game
     if user_input == "q":
         break
 
+    # Typo check (User input restriction)
     if user_input not in options:
+        print("Invalid input.")
         continue
 
-    random_number = random.randint(0, 2)
-    # rock: 0, paper: 1, scissors: 2
+    # Game continues
+    random_number = random.randint(0, 2)  # Rock: 0, Paper: 1, Scissors: 2
     computer_pick = options[random_number]
-    print("Computer picked", computer_pick + ".")
+    print("Computer:", computer_pick)
 
-    if user_input == "rock" and computer_pick == "scissors":
+    # User VS Computer
+    if user_input == computer_pick:
+        print("Play again!")
+        continue
+    elif user_input == "rock" and computer_pick == "scissors":
         print("You won!")
         user_wins += 1
-
     elif user_input == "paper" and computer_pick == "rock":
         print("You won!")
         user_wins += 1
-
     elif user_input == "scissors" and computer_pick == "paper":
         print("You won!")
         user_wins += 1
-
     else:
         print("You lost!")
         computer_wins += 1
+    continue
 
-print("You won", user_wins, "times.")
-print("The computer won", computer_wins, "times.")
-print("Goodbye!")
+print("You won", user_wins, "times / Computer won", computer_wins, "times.")
